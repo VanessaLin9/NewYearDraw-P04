@@ -12,5 +12,6 @@ TWGS 新年抽獎使用小程式，本程式提供以下功能
 ####刻意練習:
 
 ```
- 程式碼模組化 (modularization) 練習 
+ 程式碼模組化 (modularization) 練習
+ MVC架構 
  ```
