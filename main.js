@@ -16,6 +16,7 @@ const view = {
 const controller = {
   //和流程有關的程式碼
   currentState: GAME_STATE.ShowPrizeAwaits,
+  //生成獎品
   generatePrize() {}
 }
 
