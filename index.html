@@ -32,7 +32,7 @@
           <th>中獎者</th>
         </thead>
         <tbody id="data-panel">
-          <tr>
+          <!-- <tr>
             <td><i class="fas fa-gift"></i></td>
             <td>禮物卡</td>
             <td>小智</td>
@@ -41,7 +41,7 @@
             <td><i class="fas fa-gift"></i></td>
             <td>小麥套餐</td>
             <td>vanessa</td>
-          </tr>
+          </tr> -->
           <!-- display data here -->
         </tbody>
       </table>
@@ -50,12 +50,14 @@
     <div id="show">
       <div class="prize">
         <div class="showPrize">
-          <div id="prizeName" class="mb-2">
-            <h4 class="font-weight-bold">Amazon禮物卡</h4>
+          <div class="mb-2 showPrizeName">
+            <h4 class="font-weight-bold" id="prizeName"></h4>
           </div>
-          <img id="fig"
-            src="https://static.careerengine.us/api/aov2/https%3A_%7C__%7C_mmbiz.qpic.cn_%7C_mmbiz_gif_%7C_Fr2k3DYvg4cvChc1CjgvLtrmoYjhibAB42gmhAuUDiaVhfxAzZU7oiaACM2UuxuWOmqexJG49mTk1c8PFvsbBv27g_%7C_640%3Fwx_fmt%3Dgif"
-            alt="">
+          <div class="showPrizeFig">
+            <img id="fig"
+              src="https://static.careerengine.us/api/aov2/https%3A_%7C__%7C_mmbiz.qpic.cn_%7C_mmbiz_gif_%7C_Fr2k3DYvg4cvChc1CjgvLtrmoYjhibAB42gmhAuUDiaVhfxAzZU7oiaACM2UuxuWOmqexJG49mTk1c8PFvsbBv27g_%7C_640%3Fwx_fmt%3Dgif"
+              alt="">
+          </div>
         </div>
         
         <div class="rounded-circle" id="prize-btn" alt="...">
@@ -65,19 +67,19 @@
 
       <div class="winner">
         <div class="showWinner">
-          <div id="winnerName">
-            <h3 class="font-weight-bolder">小智</h3>
+          <div >
+            <h3 class="font-weight-bolder" id="winnerName">誰中獎!?</h3>
           </div>
           <div class="decision">
-            <button type="button" class="btn btn-dark m-2">重抽</button>
-            <button type="button" class="btn btn-warning m-2">確認</button>
+            <!-- 生成按鈕 -->
           </div>
         </div>
         
-        <div class="rounded-circle" id="prize-btn" alt="...">
+        <button class="rounded-circle" id="draw-btn">
           <h4 class="font-weight-bolder">抽抽</h4>
-        </div>
+        </button>
       </div>
+
     </div>
   </div>
 

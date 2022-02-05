@@ -40,7 +40,7 @@ h2 {
   flex-direction: column;
   justify-content: space-around;
 }
-#prizeName{
+.showPrizeName{
   /* background-color: blueviolet; */
   height: 25px;
   color:#3f4e4e;
@@ -56,12 +56,19 @@ h2 {
   align-items: center;
   justify-content: space-around;
 }
-#fig {
+.showPrizeFig {
   width: 330px;
   height:200px;
   background-color: #FFFFFF;
   outline: 3px solid #000000;
   border:6px solid #F5C285;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+#fig{
+  max-width: 310px;
+  max-height:180px;
 }
 .winner {
   /* background-color: coral; */
