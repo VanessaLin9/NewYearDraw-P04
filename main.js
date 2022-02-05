@@ -7,35 +7,40 @@ const GAME_STATE ={
 }
 //獎品 & 參與者
  const prize = [
-    {
-      "name": "膠囊咖啡機",
-      "pictureURL": "https://slimages.macysassets.com/is/image/MCY/products/4/optimized/20431034_fpx.tif?op_sharpen=1&amp;wid=700&amp;hei=855&amp;fit=fit,1" 
-    },
-    {
-      "name": "全套鍋具組",
-      "pictureURL": "https://static.careerengine.us/api/aov2/https%3A_%7C__%7C_mmbiz.qpic.cn_%7C_mmbiz_gif_%7C_Fr2k3DYvg4cvChc1CjgvLtrmoYjhibAB42gmhAuUDiaVhfxAzZU7oiaACM2UuxuWOmqexJG49mTk1c8PFvsbBv27g_%7C_640%3Fwx_fmt%3Dgif" 
-    }
-  ]
+  {"id":0,"name":"擠檸檬器","pictureURL":"https://i5.walmartimages.com/asr/b90ed4e5-d679-402c-ad70-771e0d13660a.e9a7becb3ab1ba138340d6a51148d57c.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"},{"id":1,"name":"Amazon禮物卡$15","pictureURL":"https://gamecardsdirect.com/content/picture/23005/amazon-gift-card-15-dollar.jpg"},{"id":2,"name":"Amazon禮物卡$15","pictureURL":"https://gamecardsdirect.com/content/picture/23005/amazon-gift-card-15-dollar.jpg"},{"id":3,"name":"Amazon禮物卡$15","pictureURL":"https://gamecardsdirect.com/content/picture/23005/amazon-gift-card-15-dollar.jpg"},{"id":4,"name":"氣炸鍋","pictureURL":"https://slimages.macysassets.com/is/image/MCY/products/4/optimized/17998204_fpx.tif?op_sharpen=1&wid=1230&hei=1500&fit=fit,1&$filterxlrg$&fmt=webp"},{"id":5,"name":"刀組","pictureURL":"https://slimages.macysassets.com/is/image/MCY/products/2/optimized/16146892_fpx.tif?op_sharpen=1&wid=1230&hei=1500&fit=fit,1&$filterxlrg$&fmt=webp"},{"id":6,"name":"便當盒組","pictureURL":"https://m.media-amazon.com/images/I/81T0-lmYxPL._AC_SX522_.jpg"},{"id":7,"name":"果汁機","pictureURL":"https://slimages.macysassets.com/is/image/MCY/products/4/optimized/1786184_fpx.tif?op_sharpen=1&wid=1230&hei=1500&fit=fit,1&$filterxlrg$&fmt=webp"},{"id":8,"name":"Brita水壺","pictureURL":"https://m.media-amazon.com/images/I/61glxd8kQ5L._AC_SX679_.jpg"},{"id":9,"name":"Chromecast","pictureURL":"https://m.media-amazon.com/images/I/81rOtfzI0QL._AC_SX679_.jpg"},{"id":10,"name":"鬆餅機1","pictureURL":"https://slimages.macysassets.com/is/image/MCY/products/1/optimized/18195521_fpx.tif?op_sharpen=1&wid=1230&hei=1500&fit=fit,1&$filterxlrg$&fmt=webp"},{"id":11,"name":"鬆餅機2","pictureURL":"https://slimages.macysassets.com/is/image/MCY/products/8/optimized/19387718_fpx.tif?op_sharpen=1&wid=1230&hei=1500&fit=fit,1&$filterxlrg$&fmt=webp"},{"id":12,"name":"加濕器","pictureURL":"https://m.media-amazon.com/images/I/910iTpyL4GL._AC_SX522_.jpg"},{"id":13,"name":"行車紀錄器","pictureURL":"https://m.media-amazon.com/images/I/712VvxKgVHL._AC_SL1500_.jpg"},{"id":14,"name":"Oral-B電動牙刷","pictureURL":"https://m.media-amazon.com/images/I/81NKdvBMbHL._AC_SX679_.jpg"},{"id":15,"name":"Chromecast w/ Google TV","pictureURL":"https://i5.walmartimages.com/asr/a4e2e013-1d85-4380-8ace-e9780b074d54.1151d7079111b6ad4d9ef4e334953193.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"},{"id":16,"name":"Insignia 32\" TV","pictureURL":"https://m.media-amazon.com/images/I/51IvQZbr4hL._AC_.jpg"}
+]
 const player = [
-  {"id":0,"name":"小智"},
+  {"id":0,"name":"UR_Father"},
   {"id":1,"name":"Tank"},
-  {"id":2,"name":"vanessa"},
-  {"id":3,"name":"jason"},
+  {"id":2,"name":"BUF HOMBOY"},
+  {"id":3,"name":"XfuIarNE"},
   {"id":4,"name":"vivian"},
-  {"id":5,"name":"edwin"}
+  {"id":5,"name":"Hsuan"},
+  {"id":6,"name":"Hs1uan"},
+  {"id":7,"name":"Hsu3an"},
+  {"id":8,"name":"Hs5u4an"},
+  {"id":9,"name":"Hsu6an"},
+  {"id":10,"name":"Hs7uan"},
+  {"id":11,"name":"Hsdasuan"},
+  {"id":13,"name":"Hs3dasuan"},
+  {"id":14,"name":"H2sdasuan"},
+  {"id":15,"name":"1suan"},
+  {"id":16,"name":"999"},
+  {"id":17,"name":"H99dasuan"},
 ]
 const prizeBtn = document.querySelector('#prize-btn')
 const drawBtn = document.querySelector('#draw-btn')
 const decision = document.querySelector('.decision')
 const prizeFig = document.querySelector('#fig')
 const prizeName = document.querySelector('#prizeName')
+const winnerName = document.querySelector('#winnerName')
 
 //MVC架構
 
 const view = {
   //和畫面有關的程式碼
   displayGift() {
-    
+    // 秀獎品
     prizeName.innerHTML = prize[0].name
     prizeFig.src = prize[0].pictureURL
     model.winnerIs[0].prize = prize[0].name
@@ -43,27 +48,22 @@ const view = {
     drawBtn.removeAttribute("disabled")
   },
   drawLot() { 
-    const winnerName = document.querySelector('#winnerName')
+    // 抽獎
     let playerNumber = player.length
     const winnerNumber = Math.floor(Math.random()*playerNumber)
     model.removeId = winnerNumber
-    // let htmlContent = ''
-
-    console.log(winnerNumber)
+    // 秀中獎者
+    // console.log(winnerNumber)
     winnerName.innerHTML = player[winnerNumber].name
     model.winnerIs[0].winner = player[winnerNumber].name
     model.winnerIs[0].id = player[winnerNumber].id
     console.log(model.winnerIs[0])
 
     decision.style.display = 'flex'
-    // htmlContent += `
-    //   <button type="button" id="redraw" class="btn btn-dark m-2 control">重抽</button>
-    //   <button type="button" id="confirm" class="btn btn-warning m-2 control">確認</button>
-    // `
-    // decision.innerHTML = htmlContent
   },
   addList() {
-    console.log('confirm')
+    console.log('confirm')  
+  // 新增List
     const dataPanel = document.querySelector('#data-panel')
     let htmlContent = document.createElement('tr')
     htmlContent.innerHTML= `
@@ -72,14 +72,20 @@ const view = {
       <td>${model.winnerIs[0].winner}</td>
     `
     dataPanel.appendChild(htmlContent)
-    // decision.innerHTML =''
-    decision.style.display = 'none'
-
-    console.log('要剪掉的是', model.removeId)
+    let thisPrize = model.winnerIs[0].prize
+    let thisWinner = model.winnerIs[0].winner
+    
+  
+  // 移除抽過的人 
+    // console.log('要剪掉的是', model.removeId)
     player.splice(model.removeId,1)
-    console.log('剪完後的名單', player)
+    // console.log('剪完後的名單', player)
 
-    // drawBtn.removeAttribute("disabled")
+  // 清除畫面
+  decision.style.display = 'none'
+  winnerName.innerHTML = "誰中獎!?"
+  prizeName.innerHTML = ''
+  prizeFig.src = "https://static.careerengine.us/api/aov2/https%3A_%7C__%7C_mmbiz.qpic.cn_%7C_mmbiz_gif_%7C_Fr2k3DYvg4cvChc1CjgvLtrmoYjhibAB42gmhAuUDiaVhfxAzZU7oiaACM2UuxuWOmqexJG49mTk1c8PFvsbBv27g_%7C_640%3Fwx_fmt%3Dgif"
   }
 }
 
@@ -90,10 +96,8 @@ const controller = {
   switch(this.currentState) {
     case GAME_STATE.ShowPrizeAwaits:
       if(control.id === "prize-btn") {
-        
         view.displayGift()
       }
-      // prizeBtn.addEventListener('click', event => {view.displayGift()})
 
       this.currentState = GAME_STATE.DrawLotsAwaits
       break
@@ -103,12 +107,6 @@ const controller = {
         drawBtn.setAttribute("disabled","disabled")
         view.drawLot()
       }
-      // drawBtn.addEventListener('click', event => {
-      //   drawBtn.setAttribute("disabled","disabled")
-      //   view.drawLot()
-      //   console.log('抽幾次?')
-      // })
-      // console.log('有到這嗎?')
       this.currentState = GAME_STATE.ShowWinner
       break
 
@@ -132,25 +130,6 @@ const controller = {
         this.currentState = GAME_STATE.ShowPrizeAwaits
         break
       }
-      // decision.addEventListener('click', event => {
-      //   if(event.target.id === "redraw") {
-      //     console.log('redraw')
-      //     drawBtn.removeAttribute("disabled")
-      //   } else {
-      //     view.addList()
-      //     console.log("--->",model.winnerIs[0])
-      //     model.winnerList.push(model.winnerIs[0])
-      //     prize.shift()
-      //     model.winnerIs = [{}]
-      //     if (prize.length === 0){
-      //       this.currentState = GAME_STATE.GameFinished
-      //       console.log('抽完啦')
-      //       console.log('清單', model.winnerList)
-      //       return
-      //     }
-      //   this.currentState = GAME_STATE.ShowPrizeAwaits
-      //   }
-      // })
       break
   }},
 }
@@ -161,8 +140,6 @@ const model ={
   winnerList: [],
   winnerIs:[{}]
 }
-
-// controller.dispatchEvent()
 
 document.querySelectorAll('.control').forEach(control => {
   control.addEventListener('click', event => {
