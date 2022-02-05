@@ -117,8 +117,8 @@ const controller = {
           }
         this.currentState = GAME_STATE.ShowPrizeAwaits
         }
-      
       })
+      break
   }},
 }
 

@@ -1,5 +1,7 @@
 ## TWGS 新年抽獎小程式
 ---
+請點連結: https://vanessalin9.github.io/NewYearDraw-P04/
+---
 TWGS 新年抽獎使用小程式，本程式提供以下功能 
 
 使用者可以:
