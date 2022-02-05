@@ -40,24 +40,27 @@ const view = {
     prizeFig.src = prize[0].pictureURL
     model.winnerIs[0].prize = prize[0].name
     console.log(model.winnerIs[0])
+    drawBtn.removeAttribute("disabled")
   },
   drawLot() { 
     const winnerName = document.querySelector('#winnerName')
     let playerNumber = player.length
     const winnerNumber = Math.floor(Math.random()*playerNumber)
     model.removeId = winnerNumber
-    let htmlContent = ''
+    // let htmlContent = ''
 
     console.log(winnerNumber)
     winnerName.innerHTML = player[winnerNumber].name
     model.winnerIs[0].winner = player[winnerNumber].name
     model.winnerIs[0].id = player[winnerNumber].id
     console.log(model.winnerIs[0])
-    htmlContent += `
-      <button type="button" id="redraw" class="btn btn-dark m-2">重抽</button>
-      <button type="button" id="confirm" class="btn btn-warning m-2">確認</button>
-    `
-    decision.innerHTML = htmlContent
+
+    decision.style.display = 'flex'
+    // htmlContent += `
+    //   <button type="button" id="redraw" class="btn btn-dark m-2 control">重抽</button>
+    //   <button type="button" id="confirm" class="btn btn-warning m-2 control">確認</button>
+    // `
+    // decision.innerHTML = htmlContent
   },
   addList() {
     console.log('confirm')
@@ -69,42 +72,53 @@ const view = {
       <td>${model.winnerIs[0].winner}</td>
     `
     dataPanel.appendChild(htmlContent)
-    decision.innerHTML =''
+    // decision.innerHTML =''
+    decision.style.display = 'none'
 
     console.log('要剪掉的是', model.removeId)
     player.splice(model.removeId,1)
     console.log('剪完後的名單', player)
 
-    drawBtn.removeAttribute("disabled")
+    // drawBtn.removeAttribute("disabled")
   }
 }
 
 const controller = {
   //和流程有關的程式碼
   currentState: GAME_STATE.ShowPrizeAwaits,
-  dispatchEvent(){
+  dispatchEvent(control){
   switch(this.currentState) {
     case GAME_STATE.ShowPrizeAwaits:
-      prizeBtn.addEventListener('click', event => {view.displayGift()})
+      if(control.id === "prize-btn") {
+        
+        view.displayGift()
+      }
+      // prizeBtn.addEventListener('click', event => {view.displayGift()})
+
       this.currentState = GAME_STATE.DrawLotsAwaits
       break
     
     case GAME_STATE.DrawLotsAwaits:
-      drawBtn.addEventListener('click', event => {
+      if (control.id === "draw-btn") {
         drawBtn.setAttribute("disabled","disabled")
         view.drawLot()
-        console.log('抽幾次?')
-      })
+      }
+      // drawBtn.addEventListener('click', event => {
+      //   drawBtn.setAttribute("disabled","disabled")
+      //   view.drawLot()
+      //   console.log('抽幾次?')
+      // })
       // console.log('有到這嗎?')
       this.currentState = GAME_STATE.ShowWinner
       break
 
     case GAME_STATE.ShowWinner:
-      decision.addEventListener('click', event => {
-        if(event.target.id === "redraw") {
-          console.log('redraw')
-          drawBtn.removeAttribute("disabled")
-        } else {
+      if (control.id === "redraw") {
+        console.log('redraw')
+        drawBtn.removeAttribute("disabled")
+        this.currentState = GAME_STATE.DrawLotsAwaits
+        break
+      } else if (control.id === "confirm") {
           view.addList()
           model.winnerList.push(model.winnerIs[0])
           prize.shift()
@@ -116,8 +130,27 @@ const controller = {
             return
           }
         this.currentState = GAME_STATE.ShowPrizeAwaits
-        }
-      })
+        break
+      }
+      // decision.addEventListener('click', event => {
+      //   if(event.target.id === "redraw") {
+      //     console.log('redraw')
+      //     drawBtn.removeAttribute("disabled")
+      //   } else {
+      //     view.addList()
+      //     console.log("--->",model.winnerIs[0])
+      //     model.winnerList.push(model.winnerIs[0])
+      //     prize.shift()
+      //     model.winnerIs = [{}]
+      //     if (prize.length === 0){
+      //       this.currentState = GAME_STATE.GameFinished
+      //       console.log('抽完啦')
+      //       console.log('清單', model.winnerList)
+      //       return
+      //     }
+      //   this.currentState = GAME_STATE.ShowPrizeAwaits
+      //   }
+      // })
       break
   }},
 }
@@ -131,6 +164,10 @@ const model ={
 
 // controller.dispatchEvent()
 
-document.querySelector('#body').addEventListener('mouseover', event =>{
-  controller.dispatchEvent()
+document.querySelectorAll('.control').forEach(control => {
+  control.addEventListener('click', event => {
+  controller.dispatchEvent(control)
+  })
 })
+
+  
