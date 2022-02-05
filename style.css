@@ -117,3 +117,8 @@ h2 {
   width: 10%;
   background-color: #F5C285;
 }
+.download{
+  display: none;
+  flex-direction: row;
+  align-self: start;
+}
