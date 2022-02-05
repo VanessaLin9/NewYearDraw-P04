@@ -72,8 +72,7 @@ const view = {
       <td>${model.winnerIs[0].winner}</td>
     `
     dataPanel.appendChild(htmlContent)
-    let thisPrize = model.winnerIs[0].prize
-    let thisWinner = model.winnerIs[0].winner
+    
     
   
   // 移除抽過的人 
@@ -118,7 +117,12 @@ const controller = {
         break
       } else if (control.id === "confirm") {
           view.addList()
+
+        // 儲存清單
           model.winnerList.push(model.winnerIs[0])
+          localStorage.setItem('winnerList',JSON.stringify(model.winnerList))
+          
+        // 移除已中獎人
           prize.shift()
           model.winnerIs = [{}]
           if (prize.length === 0){
